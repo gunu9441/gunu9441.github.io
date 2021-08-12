@@ -1,28 +1,28 @@
 module.exports = {
-  title: `Bee starter`,
-  description: `Blog posted about ...`,
-  author: `[Your Name]`,
-  introduction: `I explain with words and code. I explain with words and code. I explain with words and code.`,
-  siteUrl: `https://gatsby-starter-bee.netlify.com`, // Your blog site url
+  title: `Gunu's AI Log`,
+  description: `Blog posted about Gunu's Log`,
+  author: `[Gunu]`,
+  introduction: `AI, 수학에 관심이 많은 대학생입니다😊`,
+  siteUrl: `https://gunu441.github.io`, // Your blog site url
   social: {
     twitter: ``, // Your Twitter account
-    github: ``, // Your GitHub account
+    github: `gunu9441`, // Your GitHub account
     medium: ``, // Your Medium account
     facebook: ``, // Your Facebook account
     linkedin: ``, // Your LinkedIn account
     instagram: ``, // Your Instagram account
   },
-  icon: `content/assets/felog.png`, // Add your favicon
+  icon: `content/assets/ompang.png`, // Add your favicon
   keywords: [`blog`],
   comment: {
     disqusShortName: '', // Your disqus-short-name. check disqus.com.
-    utterances: 'JaeYeopHan/gatsby-starter-bee', // Your repository for archive comment
+    utterances: 'gunu9441/gunu9441.github.io', // Your repository for archive comment
   },
   configs: {
     countOfInitialPost: 10, // Config your initial count of post
   },
   sponsor: {
-    buyMeACoffeeId: 'jbee',
+    buyMeACoffeeId: 'gunu9441',
   },
   share: {
     facebookAppId: '', // Add facebookAppId for using facebook share feature v3.2
