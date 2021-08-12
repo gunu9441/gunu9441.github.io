@@ -6,6 +6,9 @@ thumbnail: { thumbnailSrc }
 draft: false
 ---
 
+Linear Regression Model은 선형 회귀 모델로서 다음과 같은 Hypothesis를 갖습니다.
+$$Y=wx+b$$
+
 ## Total code
 
 ```python
