@@ -14,8 +14,6 @@ $$ Loss fucntion=\frac{1}{2}(H(x)-Y_{label})^2$$
 
 ## Total code
 
----
-
 Linear regression을 ①numpy와 ②pytorch로 각각 구현하였습니다. numpy는 python이 지원하는 선형대수에 최적화된 라이브러리 입니다. python과 달리 matrix 연산이 편하게 되어 data science나 analaysis에 많이 사용됩니다. <br>
 반면, pytorch는 numpy와는 달리 GPU 연산을 지원하는 deep learning library입니다.<br>
 먼저, numpy로 구현한 모델을 보겠습니다.
@@ -120,14 +118,10 @@ for epoch in range(nb_epochs + 1):
 
 ## Pandas
 
----
-
 위에서 numpy를 통해 구현하면서 data preprocessing 부분을 pandas로 처리하였습니다. 판다스에 대한 설명은 해당 포스트를 참고하시면 좋습니다.
 [https://www.notion.so/Pandas-9863ad0661844d75bc08cab7c2c5ab66](https://www.notion.so/Pandas-9863ad0661844d75bc08cab7c2c5ab66)
 
 ## matplotlib
-
----
 
 figure()→scatter()→legend()→xlabel()→ylabel()→show()
 
@@ -144,8 +138,6 @@ plt.show()
 ```
 
 ## Question
-
----
 
 1. torch.Tensor.item()은 무엇인가?
 
