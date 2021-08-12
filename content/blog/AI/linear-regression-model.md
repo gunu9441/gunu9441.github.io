@@ -6,13 +6,25 @@ thumbnail: { thumbnailSrc }
 draft: false
 ---
 
-Linear Regression Model은 선형 회귀 모델로서 다음과 같은 Hypothesis를 갖습니다.
-$$Y=wx+b$$
+이번 시간에는 Linear Regression Model에 대해서 알아보겠습니다.
+Linear Regression Model은 선형 회귀 모델로 다음과 같은 Hypothesis를 갖습니다.
+
+## Category
+
+1. The Basic Description of Linear Regression
+2. Total Code
+3. Pandas
+4. Matplotlib
+
+## The Basic Description of Linear Regression
+
+Linear regression은 다음과 같은 hypothesis를 갖습니다.
+$$H(x)=Y=wx+b$$
 위의 $w$는 weight, $b$는 bias를 가리킵니다. 또한 loss function으로는 MSE 즉, Mean Squared Error를 사용하는데 MSE의 식은 아래와 같습니다.
 $$ Loss fucntion=\frac{1}{2}(H(x)-Y_{label})^2$$
 이 loss function을 통해 weight에 대한 편미분을 구한 이후, weight를 update해주게 되는데 이를 $gradient$ $descent$ 라고 합니다. Linear regression에 대한 code는 아래와 같습니다.<br>
 
-## Total code
+## Total Code
 
 Linear regression을 ①numpy와 ②pytorch로 각각 구현하였습니다. numpy는 python이 지원하는 선형대수에 최적화된 라이브러리 입니다. python과 달리 matrix 연산이 편하게 되어 data science나 analaysis에 많이 사용됩니다. <br>
 반면, pytorch는 numpy와는 달리 GPU 연산을 지원하는 deep learning library입니다.<br>
@@ -121,9 +133,15 @@ for epoch in range(nb_epochs + 1):
 위에서 numpy를 통해 구현하면서 data preprocessing 부분을 pandas로 처리하였습니다. 판다스에 대한 설명은 해당 포스트를 참고하시면 좋습니다.
 [https://www.notion.so/Pandas-9863ad0661844d75bc08cab7c2c5ab66](https://www.notion.so/Pandas-9863ad0661844d75bc08cab7c2c5ab66)
 
-## matplotlib
+## Matplotlib
 
+matplotlib은 다음과 같은 순서로 작성하면 기본적인 그래프를 만들 수 있습니다.
+<br>
+
+<p align= center>
 figure()→scatter()→legend()→xlabel()→ylabel()→show()
+</p>
+위의 순서대로 코드를 작성하게 되면 아래와 같이 작성할 수 있습니다.
 
 ```python
 %matplotlib inline
@@ -145,4 +163,4 @@ plt.show()
    <img src="assets\2021-08-12\1.png"/>
    </p>
 
-cost를 보게되면 type이 torch.Tensor이고 cost를 print시키게 되면 어떤 값 하나와, grad_fn이라는 값이 나오게 된다. 여기서 item()을 사용해주게되면 값 만이 튀어나오게 됩니다.
+cost를 보게되면 type이 torch.Tensor이고 cost를 print시키게 되면 어떤 값 하나와, grad_fn이라는 값이 나오게 된다. 여기서 item()을 사용해주게되면 값만을 얻을 수 있습니다.
