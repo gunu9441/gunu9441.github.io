@@ -1,5 +1,5 @@
 ---
-title: Linear Regression Model
+title: GAN
 date: 2021-08-12 20:08:33
 category: AI
 thumbnail: { thumbnailSrc }
