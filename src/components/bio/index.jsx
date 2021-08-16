@@ -23,6 +23,11 @@ export const Bio = () => (
                 }}
               />
               <div className="author-name">
+                <div className="hits">
+                  <a href="https://hits.seeyoufarm.com">
+                    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgunu9441.github.io&count_bg=%238B8E89&title_bg=%23171313&icon=pytorch.svg&icon_color=%23EE4C2B&title=hits&edge_flat=false"/>
+                  </a>
+                </div>
                 <span className="author-name-prefix">Written by</span>
                 <Link to={'/about'} className="author-name-content">
                   <span>@{author}</span>

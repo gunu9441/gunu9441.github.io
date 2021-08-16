@@ -1,7 +1,15 @@
 @import '../../styles/variables.scss';
 
 .bio {
-  margin-bottom: 24px;
+  margin-bottom: 6px;
+  .hits > a > img {
+    margin: 0;
+  }
+
+  .social-icon {
+    width: 26px;
+    height: auto;
+  }
 
   .author-description {
     display: flex;
@@ -12,6 +20,9 @@
     margin-right: 12px;
     margin-bottom: 0;
     min-width: 72px;
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
   .author-name-prefix {
@@ -26,13 +37,16 @@
     font-weight: bolder;
     border-radius: 8px;
     transform-origin: center;
-    animation: flutter 2s infinite linear;
   }
 
   .author-introduction {
     margin-top: 4px;
     font-size: 80%;
-    line-height: 1.4;
+    line-height: 0.5;
+    white-space: pre-line;
+    :nth-child(2) {
+      margin-left: 3px;
+    }
   }
 
   .author-socials {
