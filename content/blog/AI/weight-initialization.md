@@ -1,7 +1,7 @@
 ---
 title: Weight Initialization
 date: 2021-08-21 12:08:77
-category: ai
+category: AI
 thumbnail: { thumbnailSrc }
 draft: false
 ---
