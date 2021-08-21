@@ -80,6 +80,7 @@
 <li>Weight Initialization Problems</li>
 <li>Weight Initialization Methods</li>
 <li>More Details about Xavier Initialization &#x26; He Initialization</li>
+<li>Code</li>
 <li>Summary</li>
 <li>Reference</li>
 </ol>
@@ -291,10 +292,38 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
   <img class="gatsby-resp-image-image" alt="assets 2021 08 21 11" title="assets 2021 08 21 11" src="/static/4716bb99ed7199227455e149e7745aef/a58fe/11.png" srcset="/static/4716bb99ed7199227455e149e7745aef/5a46d/11.png 300w,
 /static/4716bb99ed7199227455e149e7745aef/a58fe/11.png 548w" sizes="(max-width: 548px) 100vw, 548px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;" loading="lazy">
     </span>
-   </p><figcaption></figcaption>
-<p></p>
+</p>
 <p>    해당 session과 관련된 내용(Xavier initialization 설명)은 아래 링크를 통해 들어가시면 보실 수 있습니다. 구글링을 하며 공부하던 중 감명깊게 읽은 블로그입니다👍</p>
 <p>link: <a href="https://nittaku.tistory.com/269">https://nittaku.tistory.com/269</a></p>
+<h2 id="code" style="position:relative;"><a href="#code" aria-label="code permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Code</h2>
+<p>    Xavier, He initialization을 배우고 나서 GAN의 code에 직접 He initialization을 적용해보았습니다. 두 개의 model을 설계하였는데 하나는 initialization을 그냥 random하게 준 것이고 다른 하나는 He initialization을 통해 초기화 해주었습니다. <strong>Leaky ReLU를 사용하였기 때문에 He initilization</strong>을 사용해주었습니다. 결과는 아래와 같습니다.</p>
+<p align="center">
+   &lt; Generator Loss &gt;
+</p>
+<p align="center">
+   <span class="gatsby-resp-image-wrapper" style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 779px; ">
+      <span class="gatsby-resp-image-background-image" style="padding-bottom: 67.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsTAAALEwEAmpwYAAABP0lEQVQ4y6WU65KDIAyFff8HVX+sVW4BuXg22KKotdOd7cxpEMIHAZKGiOCcg7X2oNLX9z26rkPbtpim6eBb2tkKKTEMA5pgFRA9lgUs/sNuU0o4/85jxc7OQmuNZlYPpJkQ08KDcXWI8Wprlb4ML9+5HUJgoB4rYLo415OKfQfM8t4z0AgkZ74C1roFelIMZL2A2anYMukMOy9WfJ47zEArb3f47kw/h8zA+Afg3aXsIVuNJYfMg8tL9ZOoj6AO+eyz3bJ3xLfMlxLTv57NvkMfEPnZpBi2lb8Dhsu5rkBFDt3PBCUFQkyHjElV5tQ6ZsruswI1A+eQ4IyCUQJkNEgr2GxZthKd22S2b2fpeYaG82+eHdYiwZ3ZUeQiwEkvxMTJT1wURmiloJSEFLwog8bHg4uCxTiO61zJEUouEL/4hE1GIz3KzwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"></span>
+  <img class="gatsby-resp-image-image" alt="assets 2021 08 21 12" title="assets 2021 08 21 12" src="/static/c9ccf748fee94bde370ad2650c819546/96e92/12.png" srcset="/static/c9ccf748fee94bde370ad2650c819546/5a46d/12.png 300w,
+/static/c9ccf748fee94bde370ad2650c819546/0a47e/12.png 600w,
+/static/c9ccf748fee94bde370ad2650c819546/96e92/12.png 779w" sizes="(max-width: 779px) 100vw, 779px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;" loading="lazy">
+    </span>
+</p>
+<p>    위의 그래프는 He initialization 해주지 않은 그래프(<span style="color:orange">주황색</span>)와 해준 그래프(<span style="color:blue">파란색</span>) 입니다. 이것은 Generator loss로 He initialization을 해준 그래프가 처음엔 <strong>loss가 엄청나게 뛰다가 빠르게 낮아지면서 initialization을 해주지 않은 그래프보다 loss가 작아진 것</strong>을 볼 수 있습니다. <strong>급격하게 loss가 올라가 있는 부분</strong>은 discriminator의 학습이 압도적으로 잘되어 discriminator가 <strong>generator가 만든 image를 보고 fake image라고 잘 판단</strong>하였기 때문입니다. discriminator쪽에도 He initialization을 적용해주었기 때문에 초반 epoch 에서 He initialization을 적용한 generator의 loss가 initialization을 적용하지 않은 generator의 loss보다 엄청나게 큰 것 볼 수 있습니다. 또한, 초기화를 해준 generator가 안해준 generator 보다 학습이 급속도로 잘되는 것을 볼 수 있습니다.</p>
+<p align="center">
+   < Discriminator Loss >
+</p>
+<p align="center">
+   <span class="gatsby-resp-image-wrapper" style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 785px; ">
+      <span class="gatsby-resp-image-background-image" style="padding-bottom: 67.33333333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAABaElEQVQ4y5VTiW7DIAzl//9y09b1WpUQwmEDbzY5mkxttUWyno1teD5iQghIKSHnDOIMpggeu4Y5OpER4ICcPCoFsNhFdEU9y5RQSkb0Dn3fwTAzVCqAEizgbyB3Qxp7RHnM+xGhoV8xxtj0pCh+vSyFEbUWGE3oBt/YFXvC6XzBxUa4QPCJEUQSFyRiUC6IijxhkpyGlJtfiZlaCuwY4SPhePjE101KbF+dpNbJktf3WOewGWef0RLGkHC4dnj7+m4O7Yn2NMtjimWDzHt7wUU3RNTYfRyvsC7MF04ByuIRLjHb80U32ljnI94PZ5ksrY4tAz17Ze8Y6sro1Ho7rL15xuwVrgy1ZJJLOXqUjWMr28SF4dMLdSisyylLm3PZ0f8PriW3aXKSvyHivgD3tfgrLrpxo2y660ExoJX/QHRhF117vrV/i1GqQYaiQa18QU3SX0sDFPXMWttwGIZWmnNujdOhqq6+Hy1p/pxb18SWAAAAAElFTkSuQmCC'); background-size: cover; display: block;"></span>
+  <img class="gatsby-resp-image-image" alt="assets 2021 08 21 13" title="assets 2021 08 21 13" src="/static/7f737dee5726118e64aa201e71f93d32/cda19/13.png" srcset="/static/7f737dee5726118e64aa201e71f93d32/5a46d/13.png 300w,
+/static/7f737dee5726118e64aa201e71f93d32/0a47e/13.png 600w,
+/static/7f737dee5726118e64aa201e71f93d32/cda19/13.png 785w" sizes="(max-width: 785px) 100vw, 785px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;" loading="lazy">
+    </span>
+</p>
+<p>    <strong>He initialization을 적용한 그래프가 적용하지 않은 그래프보다 초반 epoch에서 loss가 더 낮은</strong> 것을 확인해 볼 수 있습니다. 이것은 <strong>He initialization을 통해 discriminator의 가중치가 잘 설정되었기 때문</strong>입니다. 하지만 epoch가 점점 경과되면서 He initialization이 적용된 discriminator의 loss가 <strong>25 epoch 이후로 더 높은 것을 확인</strong>할 수 있습니다. 이것은 He initialization이 적용된 Generator의 학습이 잘 되었기 때문입니다. He initialization을 적용한 discriminator의 loss가 He initialization을 적용하지 않은 discriminator보다 높으므로 <strong>He initialization을 적용한 discriminator가 Generator를 더 잘 학습</strong>된 것을 알 수 있습니다.</p>
+<p>    따라서 이 실험을 통해 <strong>ReLU 계열로 이루어져 있는 neural network</strong>에서 <strong>He initialization을 사용</strong>하면 <strong>모델이 좀 더 빨리 학습될 뿐만 아니라 performance도 더 좋아진다는 것</strong>을 알 수 있었습니다.</p>
+<p>위의 실험 결과에 대한 코드는 아래의 링크를 통해 볼 수 있습니다😉</p>
+<p>link:</p>
 <h2 id="summary" style="position:relative;"><a href="#summary" aria-label="summary permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Summary</h2>
 <ol>
 <li>Weight Intialization Problem은 <strong>weight가 너무 작거나 크게되면 문제가 발생</strong>합니다.</li>
