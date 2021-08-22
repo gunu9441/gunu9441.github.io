@@ -240,7 +240,7 @@ link: [https://nittaku.tistory.com/269](https://nittaku.tistory.com/269)
 
 위의 실험 결과에 대한 코드는 아래의 링크를 통해 볼 수 있습니다😉
 
-link:
+link: [xavier과 he initialization을 적용한 model VS origin model](https://github.com/gunu9441/AI/blob/main/8.GAN/Comparing_performance/1_GAN_MNIST_Origin_He%26Xavier.ipynb)
 
 ## Summary
 
