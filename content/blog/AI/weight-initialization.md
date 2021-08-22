@@ -249,6 +249,7 @@ link: [xavier과 he initialization을 적용한 model VS origin model](https://g
    **Layer의 output 값들이 -1 이나 1로 치중되는 경우**, activation function의 saturation area의 gradient(around 0)가 chain rule에서 사용됩니다. 이에 ${\vartheta loss \over \vartheta w}$ 가 0이 되어 학습이 되지 않습니다.
 3. xavier initialization은 fan_in과 fan_out을 사용하며 tanh, sigmoid에 적용합니다. He initialization은 fan_in을 사용하며 ReLU에 적용합니다.
 4. He initialization은 Xavier initialization이 만들어주는 weight 분포의 $\sigma$(표준편차)보다 $\sqrt{2}$배 만큼 더 커서 **activation value의 분포를 좌우로** 더 늘려주게 됩니다.
+5. Initialization을 사용하면 **performance와 학습 속도**가 올라간다!
 
 ## Reference
 
