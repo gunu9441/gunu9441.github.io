@@ -207,7 +207,7 @@ link: [https://nittaku.tistory.com/269](https://nittaku.tistory.com/269)
 
 ## Code
 
-&nbsp; &nbsp; Xavier, He initialization을 배우고 나서 GAN의 code에 직접 He initialization을 적용해보았습니다. 두 개의 model을 설계하였는데 하나는 initialization을 그냥 random하게 준 것이고 다른 하나는 He initialization을 통해 초기화 해주었습니다. **Leaky ReLU를 사용하였기 때문에 He initilization**을 사용해주었습니다. 결과는 아래와 같습니다.
+&nbsp; &nbsp; Xavier, He initialization을 배우고 나서 GAN의 code에 직접 initialization을 적용해보았습니다. 두 개의 model을 설계하였는데 하나는 initialization을 그냥 random하게 준 것이고 다른 하나는 He initialization과 Xavier initialization을 통해 초기화 해주었습니다. **Leaky ReLU를 사용한 부분은 He initilization**을, **tanh나 sigmoid를 사용한 부분은 Xavier initialization을** 사용해주었습니다. 결과는 아래와 같습니다.
 
 <p align="center">
    < Generator Loss >
@@ -216,7 +216,7 @@ link: [https://nittaku.tistory.com/269](https://nittaku.tistory.com/269)
    <img src="assets\2021-08-21\12.png"/>
 </p>
 
-&nbsp; &nbsp; 위의 그래프는 He initialization 해주지 않은 그래프(<span style="color:orange">주황색</span>)와 해준 그래프(<span style="color:blue">파란색</span>) 입니다. 이것은 Generator loss로 He initialization을 해준 그래프가 처음엔 **loss가 엄청나게 뛰다가 빠르게 낮아지면서 initialization을 해주지 않은 그래프보다 loss가 작아진 것**을 볼 수 있습니다. **급격하게 loss가 올라가 있는 부분**은 discriminator의 학습이 압도적으로 잘되어 discriminator가 **generator가 만든 image를 보고 fake image라고 잘 판단**하였기 때문입니다. discriminator쪽에도 He initialization을 적용해주었기 때문에 초반 epoch 에서 He initialization을 적용한 generator의 loss가 initialization을 적용하지 않은 generator의 loss보다 엄청나게 큰 것 볼 수 있습니다. 또한, 초기화를 해준 generator가 안해준 generator 보다 학습이 급속도로 잘되는 것을 볼 수 있습니다.
+&nbsp; &nbsp; 위의 그래프는 initialization 해준 그래프(<span style="color:orange">주황색</span>)와 initilization을 해주지 않은 그래프(<span style="color:blue">파란색</span>) 입니다. 이것은 Generator loss로 initialization을 해준 그래프가 처음엔 **loss가 엄청나게 뛰다가 빠르게 낮아지면서 initialization을 해주지 않은 그래프보다 loss가 작아진 것**을 볼 수 있습니다. **급격하게 loss가 올라가 있는 부분**은 discriminator의 학습이 압도적으로 잘되어 discriminator가 **generator가 만든 image를 보고 fake image라고 잘 판단**하였기 때문입니다. discriminator쪽에도 initialization을 적용해주었기 때문에 초반 epoch 에서 initialization을 적용한 generator의 loss가 initialization을 적용하지 않은 generator의 loss보다 엄청나게 큰 것 볼 수 있습니다. 또한, 초기화를 해준 generator가 안해준 generator 보다 학습이 급속도로 잘되는 것을 볼 수 있습니다.
 
 <p align="center">
    < Discriminator Loss >
@@ -226,9 +226,17 @@ link: [https://nittaku.tistory.com/269](https://nittaku.tistory.com/269)
    <img src="assets\2021-08-21\13.png"/>
 </p>
 
-&nbsp; &nbsp; **He initialization을 적용한 그래프가 적용하지 않은 그래프보다 초반 epoch에서 loss가 더 낮은** 것을 확인해 볼 수 있습니다. 이것은 **He initialization을 통해 discriminator의 가중치가 잘 설정되었기 때문**입니다. 하지만 epoch가 점점 경과되면서 He initialization이 적용된 discriminator의 loss가 **25 epoch 이후로 더 높은 것을 확인**할 수 있습니다. 이것은 He initialization이 적용된 Generator의 학습이 잘 되었기 때문입니다. He initialization을 적용한 discriminator의 loss가 He initialization을 적용하지 않은 discriminator보다 높으므로 **He initialization을 적용한 discriminator가 Generator를 더 잘 학습**된 것을 알 수 있습니다.
+&nbsp; &nbsp; **initialization을 적용한 그래프가 적용하지 않은 그래프보다 초반 epoch에서 loss가 더 낮은** 것을 확인해 볼 수 있습니다. 이것은 **initialization을 통해 discriminator의 가중치가 잘 설정되었기 때문**입니다. 하지만 epoch가 점점 경과되면서 initialization이 적용된 discriminator의 loss가 **25 epoch 이후로 더 높은 것을 확인**할 수 있습니다. 이것은 initialization이 적용된 Generator의 학습이 잘 되었기 때문입니다. Initialization을 적용한 discriminator의 loss가 initialization을 적용하지 않은 discriminator보다 높으므로 **initialization을 적용한 discriminator가 Generator를 더 잘 학습**된 것을 알 수 있습니다.
 
-&nbsp; &nbsp; 따라서 이 실험을 통해 **ReLU 계열로 이루어져 있는 neural network**에서 **He initialization을 사용**하면 **모델이 좀 더 빨리 학습될 뿐만 아니라 performance도 더 좋아진다는 것**을 알 수 있었습니다.
+<p align="center">
+   < Generator Accuracy >
+</p>
+<p align="center">
+   <img src="assets\2021-08-21\14.png"/>
+</p>
+&nbsp; &nbsp; 위의 그림은 epoch가 지남에 따라, 두 개의 model이 학습하고있는 Generator의 accuracy 변화를 보여주고 있습니다. Initialization을 사용한 model이 accuracy가 더 높은 것을 알 수 있습니다.
+
+&nbsp; &nbsp; 따라서 이 실험을 통해 **initialization을 사용**하면 **모델이 좀 더 빨리 학습될 뿐만 아니라 performance도 더 좋아진다는 것**을 알 수 있었습니다.
 
 위의 실험 결과에 대한 코드는 아래의 링크를 통해 볼 수 있습니다😉
 
