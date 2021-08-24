@@ -159,8 +159,8 @@ plt.show()
 
 1. torch.Tensor.item()은 무엇인가?
 
-   <p align="center">
+<p align="center">
    <img src="assets\2021-08-12\1.png"/>
-   </p>
+</p>
 
 cost를 보게되면 type이 torch.Tensor이고 cost를 print시키게 되면 어떤 값 하나와, grad_fn이라는 값이 나오게 된다. 여기서 item()을 사용해주게되면 값만을 얻을 수 있습니다.
