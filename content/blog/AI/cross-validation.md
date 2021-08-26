@@ -14,7 +14,7 @@ draft: false
 
 &nbsp; &nbsp; 이런 과정이 끝나게 된다면 **검증용 데이터에 대해서 일정 부분 최적화가 진행**되었기 때문에 **검증용 데이터로 모델을 평가하는 것이 적합하지 않습니다**. 이에 **테스트 데이터를 통해** 모델의 진짜 **성능을 평가**하게 됩니다.
 
-평상시 대회에서는, test data의 label은 모르는 상태에서 data의 label을 맞춰야 하므로 주어진 **training dataset을 training set과 validation set을 나눠야**합니다. 하지만 _training dataset이 작아서 traning set과 validation set으로 나누지 못하는 경우_ **cross validation을 사용**합니다. 오늘 알아볼 cross validation에는 **K-Fold cross validation**, **Startified-K-Fold cross validation**이 있습니다.
+&nbsp; &nbsp; 평상시 대회에서는, test data의 label은 모르는 상태에서 data의 label을 맞춰야 하므로 주어진 **training dataset을 training set과 validation set을 나눠야**합니다. 하지만 _training dataset이 작아서 traning set과 validation set으로 나누지 못하는 경우_ **cross validation을 사용**합니다. 오늘 알아볼 cross validation에는 **K-Fold cross validation**, **Startified-K-Fold cross validation**이 있습니다.
 
 ## K-Fold cross validation
 
@@ -73,9 +73,9 @@ for fold, (train_ids, test_ids) in enumerate(kfold.split(dataset)):
 
 &nbsp; &nbsp; 아래는 classification task에 cross validation을 적용한 code입니다.
 
-link: [https://github.com/gunu9441/AI/blob/main/7.CNN/Deep_CNN_MNIST_using_cross_validation.ipynb](https://github.com/gunu9441/AI/blob/main/7.CNN/Deep_CNN_MNIST_using_cross_validation.ipynb)
+link: [Deep MNIST CNN using cross validation](https://github.com/gunu9441/AI/blob/main/7.CNN/Deep_CNN_MNIST_using_cross_validation.ipynb)
 
-다음은 `SubsetRandomSampler`를 이해하고자 pytorch documentation에 있는 source를 가져온 것입니다. 아래의 코드에 대해 살펴보겠습니다.
+&nbsp; &nbsp; 다음은 `SubsetRandomSampler`를 이해하고자 pytorch documentation에 있는 source를 가져온 것입니다. 아래의 코드에 대해 살펴보겠습니다.
 
 ```python
 [docs]class SubsetRandomSampler(Sampler[int]):
