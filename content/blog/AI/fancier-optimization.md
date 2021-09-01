@@ -29,19 +29,19 @@ $w_{t+1} = w_t-\alpha \triangledown L(w_t)$
 
 &nbsp; &nbsp; SGD는 아래와 같은 문제를 갖게 됩니다.
 
-① **zigzag를 그리며 수렴**하여 convergence speed가 느립니다.
+① **zigzag를 그리며 수렴**하여 **convergence speed가 느립니다**.
 
 ② **saddle point**에 빠질 수 있습니다.
 
 ③ **local minima**에 빠질 수 있습니다.
 
-&nbsp; &nbsp; 먼저 ①에 대해서 살펴보겠습니다. 우리가 어떤 parameter $W_1$과 $W_2$에 대해서 최적화를 진행한다면 z축을 Loss라 했을 때 아래와 같은 그래프를 생각해볼 수 있습니다.
+&nbsp; &nbsp; 먼저 ①에 대해서 살펴보겠습니다. 우리가 어떤 parameter $W_1$과 $W_2$에 대해서 **최적화를 진행**한다면 $z$축을 Loss라 했을 때 아래와 같은 그래프를 생각해볼 수 있습니다.
 
 <p align="center">
    <img src="assets\2021-08-31\1.png"/>
 </p>
 
-&nbsp; &nbsp; 위의 그림에 나와있는 두 개의 parameter인 $\theta_1$과 $\theta_2$를 각각 $W_1$과 $W_2$에 mapping된다고 가정하고 설명하겠습니다. 위의 그림은 두 개의 parameter $W_1$과 $W_2$에 대한 $Loss$그래프 입니다. 우리는 이 두 개의 파라미터에 대해서 $Loss$가 minimum일 때의 $W_1$과 $W_2$ 값을 알고 싶어합니다. $Loss$가 minimum이 되는 곳에 가기 위해서 gradient descent을 통해 천천히 다가가겠죠?😉
+&nbsp; &nbsp; 위의 그림에 나와있는 두 개의 parameter인 $\theta_1$과 $\theta_2$를 각각 $W_1$과 $W_2$에 mapping된다고 가정하고 설명하겠습니다. 위의 그림은 **두 개의 parameter** $W_1$과 $W_2$에 대한 $Loss$그래프 입니다. 우리는 이 두 개의 파라미터에 대해서 $Loss$가 **minimum**일 때의 $W_1$과 $W_2$ 값을 알고 싶어합니다. $Loss$가 **minimum이 되는 곳에 가기 위해서 gradient descent을 통해** 천천히 다가가겠죠?😉
 
 &nbsp; &nbsp; 우선, **초기 상태**의 $W_1$과 $W_2$의 값이 아래 그림에 있는 **하얀색 점**이라고 생각해봅시다.
 
@@ -55,11 +55,11 @@ $w_{t+1} = w_t-\alpha \triangledown L(w_t)$
    <img src="assets\2021-08-31\3.png"/>
 </p>
 
-&nbsp; &nbsp; 하얀색 점이 $W_1$과 $W_2$의 초기 값이라면 당연히 gradient descent를 사용해서 위의 그림처럼 **곧바로 수렴**하면 좋겠죠? 하지만 **gradient descent는 실제로 이렇게 동작하지 않습니다**. 왜냐하면 **Loss함수가 각각의 가중치들의 변화에 반응하는 정도가 다르기 때문**입니다.
+&nbsp; &nbsp; 하얀색 점이 $W_1$과 $W_2$의 초기 값이라면 당연히 gradient descent를 사용해서 위의 그림처럼 **곧바로 수렴**하면 좋겠죠? 하지만 **gradient descent는 실제로 이렇게 동작하지 않습니다**. 왜냐하면 **Loss함수가 각각의 가중치들의 변화에 반응하는 정도(가중치마다 적용되는 gradient)가 다르기 때문**입니다.
 
-&nbsp; &nbsp; **각각의 가중치들은 서로 다른 gradient**를 갖게 됩니다. 당연히 $w_1$~$w_n$(모든 $weight$)가 서로 같은 gradient를 가질 순 없겠죠?? 그 이유는 forward pass할 때, 모든 weight들이 서로 다른 input($x$값)을 갖게되는데 back propagation을 진행하면서 chain rule에 따라 ${\vartheta (h(x)=wx+b)  \over \vartheta w} = x$를 곱해주기 때문입니다. 또한, chain rule에 의해 다른 값들도 곱해지기 때문에 **모든 weight들의 gradient는 다양한 값**을 갖게 됩니다. 여기서 **weight들 중 높은 gradient를 갖는 weight와 낮은 gradient를 갖는 weight**가 생기게 되는 것입니다. 그렇다면 gradient 값이 많이 차이나는 두 개의 weight를 최적화시켜야 한다면 어떤 일이 일어날까요?
+&nbsp; &nbsp; **각각의 가중치들은 서로 다른 gradient**를 갖게 됩니다. 당연히 $w_1$~$w_n$(모든 $weight$)가 서로 같은 gradient를 가질 순 없겠죠?? 그 이유는 forward pass할 때, **모든 weight들이 서로 다른 input**($x$값)을 갖게되는데 **back propagation을 진행하면서 chain rule에 따라** ${\vartheta (h(x)=wx+b)  \over \vartheta w} = x$가 **곱해지기 때문**입니다. 또한, chain rule에 의해 앞에있는 layer들의 gradient들도 곱해지기 때문에 **모든 weight들의 gradient는 다양한 값**을 갖게 됩니다. 여기서 **weight들 중 높은 gradient를 갖는 weight와 낮은 gradient를 갖는 weight**가 생기게 되는 것입니다. 그렇다면 gradient 값이 많이 차이나는 두 개의 weight를 최적화시켜야 한다면 어떤 일이 일어날까요?
 
-&nbsp; &nbsp; 만약 Loss가 $W_1$보다 $W_2$의 변동에 더 민감하게 반응한다면 아래와 같은 현상이 일어나게 됩니다.
+&nbsp; &nbsp; 만약 Loss가 $W_1$보다 $W_2$**의 변동에 더 민감하게 반응**한다면 아래와 같은 현상이 일어나게 됩니다.
 
 <p align="center">
    <img src="assets\2021-08-31\4.png"/>
@@ -71,7 +71,7 @@ $w_{t+1} = w_t-\alpha \triangledown L(w_t)$
    <img src="assets\2021-08-31\5.png"/>
 </p>
 
-&nbsp; &nbsp; 수직방향의 weight가 $W_2$, 수평방향의 weight가 $W_1$이라고 해봅시다. 위의 그림을 보게 되면 Loss가 수직 방향의 가중치($W_2$) 변화에 훨씬 더 민감한 것(gradient가 높은 것)을 볼 수 있습니다. 가운데 지점(smile 표정)이 Loss함수의 아래로 convex한 부분이라면 3차원의 Loss함수를 생각해봤을 때 $W_2$변화에 대해 **3차원 Loss함수가 너무 민감하게 반응(gradient가 높다)**하고 $W_1$**변화에는 둔감(gradient가 낮다)하기 때문에** **convex부분으로 가는 벡터의 크기가 현저히 달라지게 됩니다**. 이에 **zigzag**를 그리며 optimal한 곳으로 가기 때문에 **convergence speed가 너무 느린 것**을 알 수 있습니다.
+&nbsp; &nbsp; 수직방향의 weight가 $W_2$, 수평방향의 weight가 $W_1$이라고 해봅시다. 위의 그림을 보게 되면 Loss가 수직 방향의 가중치($W_2$) 변화에 훨씬 더 민감한 것(**gradient가 높은 것**)을 볼 수 있습니다. 가운데 지점(smile 표정)이 Loss함수의 아래로 convex한 부분이라면 3차원의 Loss함수를 생각해봤을 때 $W_2$변화에 대해 **3차원 Loss함수가 너무 민감하게 반응(gradient가 높다)**하고 $W_1$**변화에는 둔감(gradient가 낮다)하기 때문에** **convex부분으로 가는 벡터의 크기가 현저히 달라지게 됩니다**. 이에 **zigzag**를 그리며 optimal한 곳으로 가기 때문에 **convergence speed가 너무 느린 것**을 알 수 있습니다.
 
 &nbsp; &nbsp; 위에서 본 것과 같이 **Loss함수는 한 방향으로는 엄청나게 민감할 수 있고 또 다른 방향으로는 덜 민감**할 수 있습니다. 하지만 위에서 설명했던 것은 2개의 파라미터가 존재할 때이며 실제로는 **parameter가 수천개**가 될 수 있습니다. 이런 문제는 **고차원 공간에서 훨씬 더 빈번하게 발생**하게 됩니다. 만약 가중치가 수천개, 수천억개가 된다면 **이동할 수 있는 방향이 너무나도 많고 이동할 수 있는 방향의 정도가 다양**합니다. 이런 방향 중 **불균형한 방향이 존재**한다면 위와 같이 **더 심한 zigzag**를 그리며 수렴하거나 수렴하지 않을 수 있습니다(대부분 잘 동작하지 않겠죠??😊)
 
@@ -103,7 +103,7 @@ $$
 w_{t+1}=w_t-\alpha v_{t+1}
 $$
 
-&nbsp; &nbsp; Momentum을 추가한 SGD는 기존의 $velocity$를 유지합니다. **vanilla SGD는 오로지 gradient 방향**으로만 이동하였는데 **Momentum을 추가한 SGD**(이후부터는 M-SGD로 표기)는 gradient를 계산할 때 velocity를 이용하여 **기존의 방향을 어느정도 유지한 채**로 구하게 됩니다. 즉, 현재 미니 배치의 **gradient 방향만을 고려하는 것이 아닌 이전의 velocity를 같이 고려**하게 되는 것입니다.
+&nbsp; &nbsp; **Momentum을 추가한 SGD**는 기존의 $velocity$를 유지합니다. **vanilla SGD는 오로지 gradient 방향**으로만 이동하였는데 **Momentum을 추가한 SGD**(이후부터는 M-SGD로 표기)는 gradient를 계산할 때 velocity를 이용하여 **기존의 방향을 어느정도 유지한 채**로 구하게 됩니다. 즉, 현재 미니 배치의 **gradient 방향만을 고려하는 것이 아닌 이전의 velocity를 같이 고려**하게 되는 것입니다(참고로 mini-batch를 사용할 경우, **noise가 낀 학습데이터를 batch_size로 학습**하기 때문에 살짝씩 튀면서 학습되며 수렴합니다.).
 
 &nbsp; &nbsp; M-SGD는 하이퍼 파라미터 $\rho$(rho)가 **추가적으로 사용**되고 이것은 **momentum을 얼마나 반영**할 것인지, 기존의 velocity를 얼마나 유지할 것인지 결정하게 됩니다. 보통 $\rho$는 **0.9나 0.99와 같은 높은 값**으로 맞춰주게 됩니다. 이렇게 하여 **gradient vector 그대로의 방향이 아닌 velocity vector의 방향도 고려**하여 나아가게 되는 것입니다.
 
@@ -141,13 +141,13 @@ while True:
 	x = x - learning_rate * dx / (np.sqrt(grad_squared) + 1e-7)
 ```
 
-&nbsp; &nbsp; 위의 코드를 보게 되면 기존의 AdaGrad의 `grad_squared`와 다르다는 것을 볼 수 있습니다. **기존의 AdaGrad는 무작정 현재의 gradient를 제곱**해서 더했지만 **RMSProp는** `decay_rate`**을 추가**시켜 **가중합을 사용**하므로써 **얼마나 이전의 grad_squared 값을 반영**할 건지 결정할 수 있습니다. 또한, **현재 gradient의 제곱값을 (1-decay_rate)만큼 곱**해주어 반영하게 됩니다.
+&nbsp; &nbsp; 위의 코드를 보게 되면 기존의 AdaGrad의 `grad_squared`와 다르다는 것을 볼 수 있습니다. **기존의 AdaGrad는 무작정 현재의 gradient를 제곱**해서 더했지만 **RMSProp는** `decay_rate`**을 추가**시켜 **지수 가중 이동 평균(Exponential weighted moving average)을 사용**하므로써 **얼마나 이전의 grad_squared 값을 반영**할 건지 결정할 수 있습니다. 또한, **현재 gradient의 제곱값을 (1-decay_rate)만큼 곱**해주어 반영하게 됩니다.
 
 &nbsp; &nbsp; RMSProp에서는 **decay_rate를 보통 0.9나 0.99**를 사용하게 되며 현재 **gradient의 제곱을 계속해서 더하고 나눠준다는 점이 AdaGrad와 유사**합니다. 이를 통해 두 개의 optimizer는 **step의 속도를 감속**시키거나 **가속**시킬 수 있습니다.
 
 &nbsp; &nbsp; 하지만 **RMSProp**은 step size가 점점 줄어드는, 즉 점점 **속도**가 줄어드는 문제를 해결하였습니다.
 
-&nbsp; &nbsp; 지금까지 SGD와 M-SGD, AdaGrad, RMSProp에 대해서 알아보았습니다. Momentum은 $velocity$를 **이용해서 step을 조절**하고 AdaGrad와 RMSProp은 `grad squared` term을 나눠주는 방식으로 **step을 조절**해주었습니다. 만약 Momentum에서 사용한 $velocity$의 개념과 RMSProp에서 사용했던 `grad squared` term을 조합하면 어떨까요?😉
+&nbsp; &nbsp; 지금까지 SGD와 M-SGD, AdaGrad, RMSProp에 대해서 알아보았습니다. Momentum은 $velocity$(momentum)를 **이용해서 step을 조절**하고 AdaGrad와 RMSProp은 `grad squared` term을 나눠주는 방식으로 **step을 조절**해주었습니다. 만약 Momentum에서 사용한 $velocity$의 개념과 RMSProp에서 사용했던 `grad squared` term을 조합하면 어떨까요?😉
 
 ## Adam
 
@@ -165,15 +165,17 @@ while True:
 
 &nbsp; &nbsp; `first_moment`부터 살펴보게 되면 **Momentum때와는 다르게 가중합을 사용**하였습니다. Momentum의 식은 아래와 같습니다.
 
-$v_{t+1} = \rho v_t + \triangledown f(w_t)$
+$$
+v_{t+1} = \rho v_t + \triangledown f(w_t)
+$$
 
-&nbsp; &nbsp; 위의 수식을 보게되면 $velocity$는 가중합을 사용하지 않았는데 `first_moment`에서는 **gradient의 가중합을 사용**한 것을 볼 수 있습니다. 하지만 `first_moment`는 Momentum에서의 $velocity$와 의미적으로 같습니다.
+&nbsp; &nbsp; 위의 수식을 보게되면 $velocity$는 exponential weighted moving average를 사용하지 않았는데 `first_moment`에서는 **gradient의 exponential weighted moving average를 사용**한 것을 볼 수 있습니다. 하지만 `first_moment`는 Momentum에서의 $velocity$와 의미적으로 같습니다.
 
 &nbsp; &nbsp; `second_moment`는 AdaGrad와 RMSProp처럼 **gradients의 제곱을 이용**합니다. AdaGrad와 RMSProp와 같이 **sqrt(second_moment)를 나눠주게 되며 똑같은 역할**을 하게 됩니다(**큰 값을 갖게 되면 작은 step**으로, **작은 값을 갖게 되면 큰 step**으로 학습 진행).
 
 &nbsp; &nbsp; 이에 Adam의 형태를 **momentum + grad squared term으로 구성**되어 있는 것으로 볼 수 있습니다. 하지만 현재의 Adam은 문제가 있습니다.
 
-&nbsp; &nbsp; 초기에 `second_moment`**를 0으로 초기화**하여 epoch를 돌때마다 `second_moment`는 update를 거치게 됩니다. 하지만 **beta2**는 `decay_rate`로 0.9나 0.99의 값을 가지기 때문에 **second_moment는 0에 가까운 값을 초기 상태**에서 갖게됩니다. weight를 update 해줄 때 `second_moment`로 나누기 때문에 **초기의 step이 엄청나게 커지게** 됩니다. 초기의 step이 엄청나게 커진 것은 손실 함수자체가 가파르기 때문이 아니라 second moment를 0으로 초기화 시켜 발생한 **인공적인 현상이기에 문제**가됩니다.
+&nbsp; &nbsp; 초기에 `second_moment`**를 0으로 초기화**하여 epoch를 돌때마다 `second_moment`는 update를 거치게 됩니다. 하지만 **beta2**는 `decay_rate`로 0.9나 0.99의 값을 가지기 때문에 `second_moment`**는 0에 가까운 값을 초기 상태**에서 갖게됩니다. weight를 update 해줄 때 `second_moment`로 나누기 때문에 **초기의 step이 엄청나게 커지게** 됩니다. 초기의 step이 엄청나게 커진 것은 손실 함수자체가 가파르기 때문이 아니라 `second moment`를 0으로 초기화 시켜 발생한 **인공적인 현상이기에 문제**가됩니다.
 
 &nbsp; &nbsp; `first_moment` 또한 작아서 상쇄될거라 생각할 수 도있지만 **상쇄되지 않고 초반 step이 엄청나게 커져 엉뚱한 곳으로 이동**하여 잘못될 수 도 있습니다. 이에 문제를 해결하고자 **보정항**(bias correction term)을 따로 추가하게 됩니다.
 
@@ -198,7 +200,7 @@ for t in range(num_iterations):
 	x = x - learning_rate * first_moment / (np.sqrt(second_moment)+1e-7)
 ```
 
-&nbsp; &nbsp; `first_moments`와 `second_moments`를 update하고 난 후 현재 step에 적절한 unbias term(first_unbias와 second_unbias)을 계산합니다. 이 unbiased term을 통해 초기 step에서 기존 Adam의 작은 `second_moment`로 나눠줄 때 **step이 엄청 커지는 문제를 해결**할 수 있습니다. `second_unbias`에 있는 `beta2 ** t`는 **초기 step에서 값이 0.9나 0.99**가 됩니다. 이 값을 1에 빼게 된다면 **0.1이나 0.01이 나오게 되는데** 이 값으로 `second_moment`를 나눠줌으로써 `second_moment`의 값이 **10배, 100배로 늘어나며 기존의 문제를 해결**할 수 있습니다. 초기 step에서 기존 Adam의 `second_moment`값이 작은게 문제였기 때문에 **이 값을 10배, 100배로 늘려줘서 보정을 한 것**입니다. `first_moment` 또한 **기존 Adam에서의 초기 step에서 매우 작은 값**을 가지고 있었지만 **늘려주게 되면서 보정**됩니다.
+&nbsp; &nbsp; `first_moments`와 `second_moments`를 update하고 난 후 현재 step에 적절한 bias correction term(first_unbias와 second_unbias)을 계산합니다. 이 bias correction term을 통해 초기 step에서 기존 Adam의 작은 `second_moment`로 나눠줄 때 **step이 엄청 커지는 문제를 해결**할 수 있습니다. `second_unbias`에 있는 `beta2 ** t`는 **초기 step에서 값이 0.9나 0.99**가 됩니다. 이 값을 1에 빼게 된다면 **0.1이나 0.01이 나오게 되는데** 이 값으로 `second_moment`를 나눠줌으로써 `second_moment`의 값이 **10배, 100배로 늘어나며 기존의 문제를 해결**할 수 있습니다. 초기 step에서 기존 Adam의 `second_moment`값이 작은게 문제였기 때문에 **이 값을 10배, 100배로 늘려줘서 보정을 한 것**입니다. `first_moment` 또한 **기존 Adam에서의 초기 step에서 매우 작은 값**을 가지고 있었지만 **늘려주게 되면서 보정**됩니다.
 
 &nbsp; &nbsp; Adam은 **다양한 문제들에도 잘 작동**하여 모든 문제에서 **기본 알고리즘으로 Adam을 사용**한다고 합니다. 실제로 Adam은 `beta1`=0.9, `beta2`=0.999, `learning_rate`=1e-3 or 5e-4(1e-4~1e-3)가 **많은 모델의 첫 시작 포인트**로 좋습니다.
 
@@ -210,7 +212,7 @@ for t in range(num_iterations):
 
 &nbsp; &nbsp; 위의 그림에서 검정색은 SGD, 파란색은 M-SGD, 빨간색은 RMSProp, 보라색은 Adam을 사용했을 때의 결과입니다. Momentum은 $velocity$를 이용해서 **step을 조절**하고 AdaGrad와 RMSProp은 **grad squared term을 나눠주는 방식**으로 step을 조절해줍니다. 이에 momentum의 경우, $velocity$ 덕분에 **overshoot한 이후에 다시 minima로** 돌아오게 됩니다. 하지만 RMSProp의 경우 gradient가 크면 작은 step으로 줄어들고, gradient가 작다면 좀 더 큰 step으로 줄어들기 때문에 **각 차원마다(각 weight마다) 상황에 맞도록 수렴**합니다.
 
-&nbsp; &nbsp; Adam은 **momentum**과 **RMSProp**을 섞은 듯한 모습을 보여줍니다. Adam이 momentum처럼 **overshoot을 하긴 하지만 momentum 만큼 심하게 overshooting되지 않게 됩니다**. 왜냐하면 현재 gradient에 `(1-beta1)`을 곱해서 더해주며(가중합을 말하는겁니다😉) **현재 gradient가 높으면 작은 step**으로 가게끔 보정해주고 **낮으면 큰 step으로 가게끔 보정**(grad_squared & unbiased term)해주기 때문입니다. 이에. Adam은 RMSProp의 특징을 갖고있다고 말할 수 있습니다. 위에서 말했던 것처럼 **overshooting의 정도를 줄여주는데 grad_squared term과 unbiased term이 기여하기 때문**입니다. 이에 **Adam또한 각 차원(수많은 weight들)의 상황을 고려**해서 step을 이동한다고 말할 수 있습니다.
+&nbsp; &nbsp; Adam은 **momentum**과 **RMSProp**을 섞은 듯한 모습을 보여줍니다. Adam이 momentum처럼 **overshoot을 하긴 하지만 momentum 만큼 심하게 overshooting되지 않게 됩니다**. 왜냐하면 현재 gradient에 `(1-beta1)`을 곱해서 더해주며(가중합을 말하는겁니다😉) **현재 gradient가 높으면 작은 step**으로 가게끔 보정해주고 **낮으면 큰 step으로 가게끔 보정**(grad_squared & unbiased term)해주기 때문입니다. 이에. Adam은 RMSProp의 특징을 갖고있다고 말할 수 있습니다. 위에서 말했던 것처럼 **overshooting의 정도를 줄여주는데 grad_squared term과 unbiased term이 기여하기 때문**입니다. 이에 **Adam또한 각 차원(수많은 weight들)의 상황을 고려**해서 **step을 이동**한다고 말할 수 있습니다.
 
 &nbsp; &nbsp; 따라서 Adam은 **momentum처럼 동작하는 동시에 RMSProp처럼 동작**합니다.
 
@@ -225,15 +227,16 @@ for t in range(num_iterations):
 
 ## Summary
 
-1. SGD는 **Loss는 각 parameter($weight$)의 변동에 따라 민감한 정도가 다르기 때문**에 **zigzag**를 그리면서 convergence speed가 느려질 수 있으며, **saddle point와 local minima**에 빠질 수 있습니다.
-2. SGD에 **momentum term**을 추가시키면 기존의 $velocity$를 $\rho$만큼 유지한채로 현재 gradient값을 더하여 update하기 때문에 saddle point와 local minima에서 빠져나올 수 있습니다.
+1. SGD는 **Loss값이 각 parameter($weight$)의 변동에 따라 민감한 정도가 다르기 때문**에 **zigzag**를 그리면서 수렴하므로 convergence speed가 느려질 수 있으며, **saddle point와 local minima**에 빠질 수 있습니다. **고차원 공간(여러개의 weight)에서**는 **zigzag로 수렴**하는 현상, **saddle point, local minima**에 더 잘 빠질 수 있습니다.
+2. SGD에 **momentum term**을 추가시키면 기존의 $velocity$를 $\rho$만큼 유지한채로 현재 gradient값을 더하여 update하기 때문에 **saddle point**와 **local minima**에서 빠져나올 수 있습니다.
 3. M-SGD의 $\rho$값을 보통 **0.9**나 **0.99**로 설정합니다.
 4. **좁고 깊은 minima(=overfitting)를** 원하는 것이 아니라 **평평한 minima**를 찾는 것을 optimizer는 목표로 합니다.
 5. AdaGrad는 Neural Network를 학습시킬 때 잘 사용하지 않습니다.
 6. RMSProp에서는 **decay_rate**를 보통 **0.9**나 **0.99**를 사용합니다.
-7. Momentum은 $velocity$를 이용해서 **step을 조절**하고 AdaGrad와 RMSProp은 **grad squared term**을 나눠주는 방식으로 step을 조절한다.
-8. Adam은 `beta1`=0.9, `beta2`=0.999, learning_rate=1e-3 or 5e-4(1e-4~1e-3)가 많은 모델의 첫 시작 포인트로 좋습니다.
-9. Optimizer를 사용할 때 Adam을 사용합시다!😎
+7. Momentum은 $velocity$(momentum)를 이용해서 **step을 조절**하고 AdaGrad와 RMSProp은 **grad squared term**을 나눠주는 방식으로 **step을 조절**한다.
+8. 초기 `seoncd_moment`가 너무 작아 **step이 너무 커지기 때문에 발산**할 수 있습니다. 이에 Adam에서는 **보정항**(bias correction term)을 사용합니다.
+9. Adam은 `beta1`=0.9, `beta2`=0.999, learning_rate=1e-3 or 5e-4(1e-4~1e-3)가 많은 모델의 첫 시작 포인트로 좋습니다.
+10. Optimizer를 사용할 때 Adam을 사용합시다!😎
 
 # Reference
 
