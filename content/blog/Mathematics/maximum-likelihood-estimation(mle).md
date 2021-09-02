@@ -50,7 +50,7 @@ $$
 &nbsp; &nbsp; 그리고 보통 자연로그를 이용해서 아래의 수식과 같이 **log-likelihood function**를 $L(\theta|x)$로 표기합니다.
 
 $$
-L(\theta|x)=logP(x|\theta)=\prod p(x_k|\theta)=\sum log (p(x_k|\theta))
+L(\theta|x)=logP(x|\theta)=log(\prod p(x_k|\theta))=\sum log (p(x_k|\theta))
 $$
 
 ## Maximum Likelihood Estimation(MLE)
