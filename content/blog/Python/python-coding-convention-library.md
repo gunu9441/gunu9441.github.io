@@ -22,7 +22,7 @@ draft: false
 
 ## What is Lint?
 
-&nbsp; &nbsp; **lint**란 무엇일까요? **lint**란 **소스코드를 분석**해서 **스타일 오류, 버그, 프로그램 오류 등등 오류가 의심되는 부분에 표시**(flag)를 하기 위해 사용하는 도구를 가리킵니다. 즉, **오류 등이 발생하지 않도록 검사해주는 역할**을 하게 됩니다. Python도 lint가 존재하는데 바로 **flake 8**이라는 Tool입니다.
+&nbsp; &nbsp; **lint**란 무엇일까요? **lint**란 **소스코드를 분석**해서 **스타일 오류, 버그, 프로그램 오류 등등 오류가 의심되는 부분에 표시**(flag)를 하기 위해 사용하는 도구를 가리킵니다. 즉, **오류 등이 발생하지 않도록 검사해주는 역할**을 하게 됩니다. Python도 lint가 존재하는데 바로 **flake 8**이라는 tool입니다.
 
 ## black
 
@@ -173,7 +173,7 @@ practice1.py:12:8: W291 trailing whitespace
 pip install isort
 ```
 
-isort를 설치하기 위해선 위와 같은 command를 입력하면 됩니다. Git Hook에 적용하는 방법은 아래에서 알아보도록 하겠습니다.
+isort를 설치하기 위해선 위와 같은 command를 입력하면 됩니다. **Git Hook**에 적용하는 방법은 아래에서 알아보도록 하겠습니다.
 
 ## Git Hook
 
