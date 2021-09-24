@@ -1,5 +1,5 @@
 ---
-title: [Kaggle]Digit Recognizer
+title: Digit Recognizer
 date: 2021-09-10 23:09:64
 category: Competition
 thumbnail: { thumbnailSrc }
