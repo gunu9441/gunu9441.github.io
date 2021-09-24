@@ -1,7 +1,7 @@
 ---
 title: Google Cloud Platform(GCP)
 date: 2021-09-24 21:09:75
-category: ai
+category: AI
 thumbnail: { thumbnailSrc }
 draft: false
 ---
