@@ -83,7 +83,7 @@ draft: false
 
 &nbsp; &nbsp; 즉, **서울 region**(`asia-northeast3`)안에 **GPU가 존재하는 3개의 영역들(zone)이 존재**하며 이 3개의 zone은 위와 같이 `asia-northeast3-a`, `asia-northeast3-b`, `asia-northeast3-c` 라고 불리는 것입니다!😊
 
-&nbsp; &nbsp; 또한, 위의 VM Instance를 설정해줄 때 region을 선택하는 란이 있는데 GPU를 사용하기 위해 사용하는 VM Instance는 지연시간이 상관없기 때문에 싼 곳을 골라주면 됩니다!😎
+&nbsp; &nbsp; 또한, 위의 VM Instance를 설정해줄 때 region을 선택하는 란이 있는데 GPU를 사용하기 위해 사용하는 VM Instance는 지연시간이 상관없기 때문에 싼 곳을 골라주면 됩니다!!😎
 
 ## Reference
 
